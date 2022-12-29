@@ -19,12 +19,4 @@ class IndexController extends Controller
             ]
         );
     }
-
-    /**
-     * @return Response|ResponseFactory
-     */
-    public function show(): Response|ResponseFactory
-    {
-        return inertia('Index/Show');
-    }
 }
