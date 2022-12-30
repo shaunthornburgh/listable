@@ -15,6 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [IndexController::class, 'index']);
-
+Route::get('/', [ListingController::class, 'index']);
 Route::resource('listing', ListingController::class);
