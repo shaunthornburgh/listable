@@ -18,10 +18,12 @@ return new class extends Migration
             $table->unsignedTinyInteger('beds');
             $table->unsignedTinyInteger('baths');
             $table->unsignedSmallInteger('area');
-            $table->tinyText('city');
-            $table->tinyText('code');
             $table->tinyText('street');
             $table->tinyText('street_nr');
+            $table->tinyText('city');
+            $table->tinyText('code');
+            $table->tinyText('state')->nullable();
+            $table->foreignId('country_id')->constrained();
             $table->unsignedInteger('price');
             $table->timestamps();
         });

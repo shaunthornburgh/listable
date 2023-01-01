@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 use Inertia\Response;
@@ -20,7 +21,9 @@ class ListingController extends Controller
 
     public function create()
     {
-        return inertia('Listing/Create');
+        return inertia('Listing/Create', [
+            'countries' => Country::all()->toArray()
+        ]);
     }
 
     public function store(Request $request)
@@ -31,10 +34,12 @@ class ListingController extends Controller
             'area' => 'required|integer|min:15|max:1500',
             'city' => 'required',
             'code' => 'required',
+            'country_id' => 'required|exists:countries,id',
             'street' => 'required',
             'street_nr' => 'required|min:1|max:1000',
             'price' => 'required|integer|min:1|max:20000000',
         ]));
+
         return redirect()->route('listing.index')
             ->with('success', 'Listing was created!');
     }

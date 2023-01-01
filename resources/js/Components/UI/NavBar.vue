@@ -1,10 +1,10 @@
 <template>
-    <div class="container mx-auto px-4 ">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="relative flex justify-between lg:gap-8 xl:grid xl:grid-cols-12">
             <div class="flex md:absolute md:inset-y-0 md:left-0 lg:static xl:col-span-2">
                 <div class="flex flex-shrink-0 items-center">
                     <Link :href="route('listing.index')">
-                        <img class="block h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=rose&shade=500" alt="Your Company">
+                        <img class="block h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=rose&shade=600" alt="Your Company">
                     </Link>
                 </div>
             </div>
@@ -19,7 +19,7 @@
                                     <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
                                 </svg>
                             </div>
-                            <input id="search" name="search" class="block w-full rounded-md border border-gray-300 bg-white py-2 pl-10 pr-3 text-sm placeholder-gray-500 focus:border-rose-500 focus:text-gray-900 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-rose-500 sm:text-sm dark:bg-gray-700 dark:border-none" placeholder="Search" type="search">
+                            <input id="search" name="search" class="block w-full rounded-md border border-gray-300 dark:border-none dark:bg-gray-700 bg-white py-2 pl-10 pr-3 text-sm placeholder-gray-500 focus:border-rose-500 focus:text-gray-900 focus:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-rose-500 sm:text-sm" placeholder="Search" type="search">
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                 </button>
             </div>
             <div class="hidden lg:flex lg:items-center lg:justify-end xl:col-span-4">
-                <a href="#" class="ml-5 flex-shrink-0 rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 dark:bg-gray-800">
+                <a href="#" class="ml-5 flex-shrink-0 rounded-full bg-white dark:bg-gray-900 p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">
                     <span class="sr-only">View notifications</span>
                     <!-- Heroicon name: outline/bell -->
                     <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
@@ -88,7 +88,7 @@
                     </div>
                 </div>
 
-                <Link :href="route('listing.create')" class="ml-6 inline-flex items-center rounded-md border border-transparent bg-rose-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">New Listing</Link>
+                <Link :href="route('listing.create')" class="ml-6 inline-flex items-center rounded-md border border-transparent bg-rose-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">New Listing</Link>
             </div>
         </div>
     </div>
