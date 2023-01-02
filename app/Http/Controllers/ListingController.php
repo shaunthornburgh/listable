@@ -58,7 +58,8 @@ class ListingController extends Controller
         return inertia(
             'Listing/Edit',
             [
-                'listing' => $listing
+                'listing' => $listing,
+                'countries' => Country::all()->toArray()
             ]
         );
     }

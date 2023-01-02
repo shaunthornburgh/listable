@@ -1,6 +1,5 @@
 <template>
     <div class="mx-auto max-w-3xl">
-
         <form class="space-y-8 divide-y divide-gray-200" @submit.prevent="create">
             <div class="space-y-8 divide-y divide-gray-200">
                 <div>
@@ -29,73 +28,73 @@
 
                     <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                         <div class="sm:col-span-2">
-                            <label for="street-street_nr" class="block text-sm font-medium text-gray-700">Street number</label>
+                            <label for="street-street_nr" class="label">Street number</label>
                             <div class="mt-1">
-                                <input v-model="form.street_nr" type="text" name="street_nr" id="street_nr" autocomplete="street-address" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-rose-500 focus:ring-rose-500 sm:text-sm">
+                                <input v-model="form.street_nr" type="text" name="street_nr" id="street_nr" autocomplete="street-address" class="input">
                             </div>
-                            <div v-if="form.errors.street_nr">
+                            <div v-if="form.errors.street_nr" class="input-error">>
                                 {{ form.errors.street_nr }}
                             </div>
                         </div>
 
                         <div class="sm:col-span-4">
-                            <label for="street" class="block text-sm font-medium text-gray-700">Street address</label>
+                            <label for="street" class="label">Street address</label>
                             <div class="mt-1">
-                                <input v-model="form.street" type="text" name="street" id="street" autocomplete="street-address" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-rose-500 focus:ring-rose-500 sm:text-sm">
+                                <input v-model="form.street" type="text" name="street" id="street" autocomplete="street-address" class="input">
                             </div>
-                            <div v-if="form.errors.street">
+                            <div v-if="form.errors.street" class="input-error">
                                 {{ form.errors.street }}
                             </div>
                         </div>
 
                         <div class="sm:col-span-2">
-                            <label for="city" class="block text-sm font-medium text-gray-700">City</label>
+                            <label for="city" class="label">City</label>
                             <div class="mt-1">
-                                <input v-model="form.city" type="text" name="city" id="city" autocomplete="city" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-rose-500 focus:ring-rose-500 sm:text-sm">
+                                <input v-model="form.city" type="text" name="city" id="city" autocomplete="city" class="input">
                             </div>
-                            <div v-if="form.errors.city">
+                            <div v-if="form.errors.city" class="input-error">
                                 {{ form.errors.city }}
                             </div>
                         </div>
 
                         <div class="sm:col-span-2">
-                            <label for="state" class="block text-sm font-medium text-gray-700">State / Province</label>
+                            <label for="state" class="label">State / Province</label>
                             <div class="mt-1">
-                                <input type="text" name="state" id="state" autocomplete="address-level1" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-rose-500 focus:ring-rose-500 sm:text-sm">
+                                <input v-model="form.state" type="text" name="state" id="state" autocomplete="address-level1" class="input">
                             </div>
-                            <div v-if="form.errors.state">
+                            <div v-if="form.errors.state" class="input-error">
                                 {{ form.errors.state }}
                             </div>
                         </div>
 
                         <div class="sm:col-span-2">
-                            <label for="code" class="block text-sm font-medium text-gray-700">ZIP / Postal code</label>
+                            <label for="code" class="label">ZIP / Postal code</label>
                             <div class="mt-1">
-                                <input v-model="form.code" type="text" name="code" id="code" autocomplete="code" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-rose-500 focus:ring-rose-500 sm:text-sm">
+                                <input v-model="form.code" type="text" name="code" id="code" autocomplete="code" class="input">
                             </div>
-                            <div v-if="form.errors.code">
+                            <div v-if="form.errors.code" class="input-error">
                                 {{ form.errors.code }}
                             </div>
                         </div>
 
                         <div class="sm:col-span-6">
-                            <label for="country_id" class="block text-sm font-medium text-gray-700">Country</label>
+                            <label for="country_id" class="label">Country</label>
                             <div class="mt-1">
-                                <select v-model="form.country_id" id="country_id" name="country_id" autocomplete="country_id" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-rose-500 focus:ring-rose-500 sm:text-sm">
+                                <select v-model="form.country_id" id="country_id" name="country_id" autocomplete="country_id" class="input">
                                     <option v-for="country in countries" :key="country.id" :value="country.id">
                                         {{ country.name }} ({{ country.code}})
                                     </option>
                                 </select>
                             </div>
-                            <div v-if="form.errors.country_id">
+                            <div v-if="form.errors.country_id" class="input-error">
                                 {{ form.errors.country_id }}
                             </div>
                         </div>
 
                         <div class="sm:col-span-2">
-                            <label for="beds" class="block text-sm font-medium text-gray-700">Number of Bedrooms</label>
+                            <label for="beds" class="label">Number of Bedrooms</label>
                             <div class="mt-1">
-                                <select v-model="form.beds" id="country" name="country" autocomplete="country-name" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-rose-500 focus:ring-rose-500 sm:text-sm">
+                                <select v-model="form.beds" id="country" name="country" autocomplete="country-name" class="input">
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
@@ -108,15 +107,15 @@
                                     <option>10</option>
                                 </select>
                             </div>
-                            <div v-if="form.errors.beds">
+                            <div v-if="form.errors.beds" class="input-error">
                                 {{ form.errors.beds }}
                             </div>
                         </div>
 
                         <div class="sm:col-span-2">
-                            <label for="baths" class="block text-sm font-medium text-gray-700">Number of Bathrooms</label>
+                            <label for="baths" class="label">Number of Bathrooms</label>
                             <div class="mt-1">
-                                <select v-model="form.baths" id="baths" name="baths" autocomplete="country-name" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-rose-500 focus:ring-rose-500 sm:text-sm">
+                                <select v-model="form.baths" id="baths" name="baths" autocomplete="country-name" class="input">
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
@@ -129,41 +128,41 @@
                                     <option>10</option>
                                 </select>
                             </div>
-                            <div v-if="form.errors.baths">
+                            <div v-if="form.errors.baths" class="input-error">
                                 {{ form.errors.baths }}
                             </div>
                         </div>
 
                         <div class="sm:col-span-2">
-                            <label for="area" class="block text-sm font-medium text-gray-700">Area / sqft</label>
+                            <label for="area" class="label">Area / sqft</label>
                             <div class="mt-1">
-                                <input v-model="form.area" type="text" name="area" id="area" autocomplete="area" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-rose-500 focus:ring-rose-500 sm:text-sm">
+                                <input v-model="form.area" type="text" name="area" id="area" autocomplete="area" class="input">
                             </div>
-                            <div v-if="form.errors.area">
+                            <div v-if="form.errors.area" class="input-error">
                                 {{ form.errors.area }}
                             </div>
                         </div>
 
                         <div class="sm:col-span-6">
-                            <label for="street" class="block text-sm font-medium text-gray-700">Asking Price</label>
+                            <label for="price" class="label">Asking Price</label>
                             <div class="mt-1">
-                                <input v-model="form.price" type="text" name="price" id="price" autocomplete="street-address" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-rose-500 focus:ring-rose-500 sm:text-sm">
+                                <input v-model="form.price" type="text" name="price" id="price" autocomplete="price" class="input">
                             </div>
-                            <div v-if="form.errors.price">
+                            <div v-if="form.errors.price" class="input-error">
                                 {{ form.errors.price }}
                             </div>
                         </div>
 
                         <div class="sm:col-span-6">
-                            <label for="about" class="block text-sm font-medium text-gray-700">Description</label>
+                            <label for="about" class="label">Description</label>
                             <div class="mt-1">
-                                <textarea id="about" name="about" rows="3" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-rose-500 focus:ring-rose-500 sm:text-sm"></textarea>
+                                <textarea id="about" name="about" rows="3" class="input"></textarea>
                             </div>
                             <p class="mt-2 text-sm text-gray-500">Write a few sentences about the property.</p>
                         </div>
 
                         <div class="sm:col-span-6">
-                            <label for="cover-photo" class="block text-sm font-medium text-gray-700">Cover photo</label>
+                            <label for="cover-photo" class="label">Photos</label>
                             <div class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
                                 <div class="space-y-1 text-center">
                                     <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
@@ -184,10 +183,10 @@
                 </div>
             </div>
 
-            <div class="pt-5">
+            <div class="mt-5">
                 <div class="flex justify-end">
-                    <button type="button" class="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">Cancel</button>
-                    <button type="submit" class="ml-3 inline-flex justify-center rounded-md border border-transparent bg-rose-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">Save</button>
+                    <button type="button" class="btn-white">Cancel</button>
+                    <button type="submit" class="btn-primary">Save</button>
                 </div>
             </div>
         </form>
