@@ -47,24 +47,49 @@
                 <h1 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-200 sm:text-3xl"><ListingAddress :listing="listing" /></h1>
 
                 <h3><ListingProperties :listing="listing" /></h3>
-                <h3><ListingPrice :price="listing.price" /></h3>
+                <h3><ListingPrice :price="monthlyPayment" /></h3>
             </div>
 
-            <!-- Options -->
             <div class="mt-4 lg:row-span-3 lg:mt-0">
-                <h2 class="sr-only">Product information</h2>
-                <p class="text-3xl tracking-tight text-gray-900 dark:text-gray-200">Make An Offer</p>
+                <div class="border-b-2 border-gray-200 pb-10">
+                    <p class="text-3xl tracking-tight text-gray-900 dark:text-gray-200">Make An Offer</p>
 
-                <form class="mt-4">
-                    <div >
-                        <label for="about" class="block text-sm font-medium text-gray-700">Details</label>
-                        <div class="mt-1">
-                            <textarea id="about" name="about" rows="3" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"></textarea>
+                    <form class="mt-4">
+                        <div >
+                            <label for="about" class="block text-sm font-medium text-gray-700">Details</label>
+                            <div class="mt-1">
+                                <textarea id="about" name="about" rows="3" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"></textarea>
+                            </div>
+                            <p class="mt-2 text-sm text-gray-500">Write some additional information for the seller about your offer.</p>
                         </div>
-                        <p class="mt-2 text-sm text-gray-500">Write some additional information for the seller about your offer.</p>
+                        <button type="submit" class="mt-4 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Submit</button>
+                    </form>
+                </div>
+
+                <div class="mt-10">
+                    <p class="text-3xl tracking-tight text-gray-900 dark:text-gray-200">Mortgage Calculator</p>
+
+                    <div class="mt-4">
+                        <label class="label">Interest rate ({{ interestRate }}%)</label>
+                        <input v-model.number="interestRate"
+                            type="range" min="0.1" max="30" step="0.1"
+                            class="w-full h-4 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+                        />
+
                     </div>
-                    <button type="submit" class="mt-4 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Submit</button>
-                </form>
+                    <div class="mt-4">
+                        <label class="label">Duration ({{ duration }} years)</label>
+                        <input v-model.number="duration"
+                            type="range" min="3" max="35" step="1"
+                            class="w-full h-4 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+                        />
+
+                    <div class="text-gray-600 dark:text-gray-300 mt-2">
+                        <div class="text-gray-400">Your monthly payment</div>
+                        <ListingPrice :price="monthlyPayment" class="text-3xl" />
+                    </div>
+                </div>
+                </div>
             </div>
 
             <div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pt-6 lg:pb-16 lg:pr-8">
@@ -109,8 +134,19 @@
 import ListingAddress from "@/Components/ListingAddress.vue";
 import ListingProperties from '@/Components/ListingProperties.vue'
 import ListingPrice from '@/Components/ListingPrice.vue'
+import {ref, computed} from 'vue'
 
-defineProps({
-    listing: Object
+const interestRate = ref(2.5)
+const duration = ref(25)
+
+const props = defineProps({
+    listing: Object,
+})
+
+const monthlyPayment = computed(() => {
+    const principle = props.listing.price
+    const monthlyInterest = interestRate.value / 100 / 12
+    const numberOfPaymentMonths = duration.value * 12
+    return principle * monthlyInterest * (Math.pow(1 + monthlyInterest, numberOfPaymentMonths)) / (Math.pow(1 + monthlyInterest, numberOfPaymentMonths) - 1)
 })
 </script>
