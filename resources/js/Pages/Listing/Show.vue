@@ -47,7 +47,7 @@
                 <h1 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-200 sm:text-3xl"><ListingAddress :listing="listing" /></h1>
 
                 <h3><ListingProperties :listing="listing" /></h3>
-                <h3><ListingPrice :price="monthlyPayment" /></h3>
+                <h3><ListingPrice :price="listing.price" /></h3>
             </div>
 
             <div class="mt-4 lg:row-span-3 lg:mt-0">
@@ -83,12 +83,31 @@
                             type="range" min="3" max="35" step="1"
                             class="w-full h-4 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
                         />
-
+                    </div>
                     <div class="text-gray-600 dark:text-gray-300 mt-2">
                         <div class="text-gray-400">Your monthly payment</div>
                         <ListingPrice :price="monthlyPayment" class="text-3xl" />
                     </div>
-                </div>
+                    <div class="mt-2 text-gray-500">
+                        <div class="flex justify-between">
+                            <div>Total paid</div>
+                            <div>
+                                <ListingPrice :price="totalPaid" class="font-medium" />
+                            </div>
+                        </div>
+                        <div class="flex justify-between">
+                            <div>Principal paid</div>
+                            <div>
+                                <ListingPrice :price="listing.price" class="font-medium" />
+                            </div>
+                        </div>
+                        <div class="flex justify-between">
+                            <div>Interest paid</div>
+                            <div>
+                                <ListingPrice :price="totalInterest" class="font-medium" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -134,7 +153,8 @@
 import ListingAddress from "@/Components/ListingAddress.vue";
 import ListingProperties from '@/Components/ListingProperties.vue'
 import ListingPrice from '@/Components/ListingPrice.vue'
-import {ref, computed} from 'vue'
+import { ref } from 'vue'
+import {useMonthlyPayment} from "@/Composables/useMonthlyPayment";
 
 const interestRate = ref(2.5)
 const duration = ref(25)
@@ -143,10 +163,6 @@ const props = defineProps({
     listing: Object,
 })
 
-const monthlyPayment = computed(() => {
-    const principle = props.listing.price
-    const monthlyInterest = interestRate.value / 100 / 12
-    const numberOfPaymentMonths = duration.value * 12
-    return principle * monthlyInterest * (Math.pow(1 + monthlyInterest, numberOfPaymentMonths)) / (Math.pow(1 + monthlyInterest, numberOfPaymentMonths) - 1)
-})
+const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(props.listing.price, interestRate, duration)
+
 </script>
