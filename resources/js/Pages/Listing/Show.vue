@@ -58,11 +58,11 @@
                         <div >
                             <label for="about" class="block text-sm font-medium text-gray-700">Details</label>
                             <div class="mt-1">
-                                <textarea id="about" name="about" rows="3" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"></textarea>
+                                <textarea id="about" name="about" rows="3" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-rose-500 focus:ring-rose-500 sm:text-sm"></textarea>
                             </div>
                             <p class="mt-2 text-sm text-gray-500">Write some additional information for the seller about your offer.</p>
                         </div>
-                        <button type="submit" class="mt-4 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Submit</button>
+                        <button type="submit" class="mt-4 flex w-full items-center justify-center rounded-md border border-transparent bg-rose-600 py-3 px-8 text-base font-medium text-white hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">Submit</button>
                     </form>
                 </div>
 
