@@ -10,6 +10,11 @@ use Inertia\ResponseFactory;
 
 class ListingController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Listing::class, 'listing');
+    }
+
     public function index()
     {
         return inertia('Listing/Index',
@@ -28,7 +33,8 @@ class ListingController extends Controller
 
     public function store(Request $request)
     {
-        Listing::create($request->validate([
+        $request->user()->listings()->create(
+            $request->validate([
             'beds' => 'required|integer|min:0|max:20',
             'baths' => 'required|integer|min:0|max:20',
             'area' => 'required|integer|min:15|max:1500',

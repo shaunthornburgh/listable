@@ -20,7 +20,10 @@ class DatabaseSeeder extends Seeder
             CountrySeeder::class
         ]);
 
-        User::factory(10)->create();
-        Listing::factory(20)->create();
+        User::factory(10)->create()->each(function ($user) {
+            Listing::factory(20)->create([
+                'user_id' => $user->id
+            ]);
+        });
     }
 }
