@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Country;
 use App\Models\Listing;
 use Illuminate\Http\Request;
-use Inertia\Response;
-use Inertia\ResponseFactory;
 
 class ListingController extends Controller
 {
@@ -15,11 +13,20 @@ class ListingController extends Controller
         $this->authorizeResource(Listing::class, 'listing');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return inertia('Listing/Index',
+        $filters = $request->only([
+            'priceFrom', 'priceTo', 'beds', 'baths', 'areaFrom', 'areaTo'
+        ]);
+
+        return inertia(
+            'Listing/Index',
             [
-                'listings' => Listing::all()
+                'filters' => $filters,
+                'listings' => Listing::latest()
+                    ->filter($filters)
+                    ->paginate(16)
+                    ->withQueryString()
             ]
         );
     }
