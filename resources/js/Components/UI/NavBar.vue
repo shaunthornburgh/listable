@@ -57,8 +57,8 @@
                         <Link :href="route('login')" class="mr-4">Sign in</Link>
                         <Link :href="route('user-account.create')" class="mr-2">Register</Link>
                     </div>
-                    <div v-else @click="isOpen = !isOpen" class="cursor-pointer">
-                        {{ user.name }}
+                    <div v-else @click="isOpen = !isOpen" class="cursor-pointer mr-4">
+                        <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
                     </div>
 
                     <!--
@@ -75,13 +75,15 @@
                         <!-- Active: "bg-gray-100", Not Active: "" -->
                         <a href="#" class="block py-2 px-4 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
 
+                        <Link :href="route('realtor.listing.index')" class="block py-2 px-4 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Manage Listings</Link>
+
                         <a href="#" class="block py-2 px-4 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
 
                         <Link :href="route('logout')" class="block py-2 px-4 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2" method="delete" as="button">Sign out</Link>
                     </div>
                 </div>
 
-                <Link :href="route('listing.create')" class="btn-primary">New Listing</Link>
+                <Link :href="route('realtor.listing.create')" class="btn-primary">New Listing</Link>
             </div>
         </div>
     </div>

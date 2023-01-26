@@ -1,6 +1,6 @@
 <template>
     <div class="mx-auto max-w-3xl">
-        <form class="space-y-8 divide-y divide-gray-200" @submit.prevent="update">
+        <form class="space-y-8 divide-y divide-gray-200" @submit.prevent="create">
             <div class="space-y-8 divide-y divide-gray-200">
                 <div>
                     <div class="mt-4">
@@ -32,7 +32,7 @@
                             <div class="mt-1">
                                 <input v-model="form.street_nr" type="text" name="street_nr" id="street_nr" autocomplete="street-address" class="input">
                             </div>
-                            <div v-if="form.errors.street_nr" class="input-error">
+                            <div v-if="form.errors.street_nr" class="input-error">>
                                 {{ form.errors.street_nr }}
                             </div>
                         </div>
@@ -190,31 +190,30 @@
                 </div>
             </div>
         </form>
+
     </div>
 </template>
 
 <script setup>
 import { useForm } from '@inertiajs/inertia-vue3'
 
-const props = defineProps({
-    listing: Object,
+defineProps({
     countries: Array
-
 })
 
 const form = useForm({
-    beds: props.listing.beds,
-    baths: props.listing.baths,
-    area: props.listing.area,
-    street: props.listing.street,
-    street_nr: props.listing.street_nr,
-    city: props.listing.city,
-    state: props.listing.state,
-    code: props.listing.code,
-    country_id: props.listing.country_id,
-    price: props.listing.price,
+    beds: 0,
+    baths: 0,
+    area: 0,
+    street_nr: 0,
+    street: null,
+    city: null,
+    state: null,
+    code: null,
+    country_id: null,
+    price: 0
 })
-const update = () => form.put(route('listing.update', props.listing.id))
+const create = () => form.post(route('realtor.listing.store'))
 </script>
 
 <style scoped>
